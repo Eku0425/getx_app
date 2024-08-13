@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../modal/user_modal.dart';
@@ -5,25 +6,33 @@ import '../modal/user_modal.dart';
 class UserController extends GetxController{
 
 
-  RxList<User> UserDatalist = <User>[].obs;
+  RxList<User> userDataList = <User>[].obs;
+  var txtName = TextEditingController();
+  var txtId = TextEditingController();
+  var txtSalary = TextEditingController();
+  var txtCompanyName = TextEditingController();
 
   void addUser(Map user)
   {
-    UserDatalist.add(User.fromMap(user));
-
+    userDataList.add(User.fromMap(user));
     // User u1 = User.fromMap(user);
-    // UserDatalist.add(u1) ;
-
+    // UserDataList.add(u1) ;
   }
 
   void removeUser(int index)
   {
-    UserDatalist.removeAt(index);
+    userDataList.removeAt(index);
   }
 
   void updateUser(int index ,Map user)
   {
-    UserDatalist[index]=User.fromMap(user);
+    // UserDatalist[index]=User.fromMap(user);
+
+    txtCompanyName = TextEditingController(text: userDataList[index].company_name);
+    txtId = TextEditingController(text: userDataList[index].id.toString());
+    txtName = TextEditingController(text: userDataList[index].name);
+    txtSalary = TextEditingController(text: userDataList[index].salary.toString());
+
   }
 
 }
